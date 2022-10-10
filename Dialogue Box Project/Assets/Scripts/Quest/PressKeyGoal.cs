@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class PressKeyGoal : Goal
 {
-    public KeyCode expectedKey;
-    public PressKeyGoal(string keyName, KeyCode keyCode) {
+    public KeyCode ExpectedKey;
+    public string KeyName;
+    public PressKeyGoal(string keyName, KeyCode keyCode, Quest quest) {
+        Quest = quest;
+        KeyName = keyName;
+        ExpectedKey = keyCode;
         Completed = false;
         RequiredAmount = 1;
         CurrentAmount = 0;
         Description = "Press the " + keyName + " key.";
+        Debug.Log("Created Goal " + Description);
     }
 
     public override void Init() {
@@ -18,7 +23,7 @@ public class PressKeyGoal : Goal
     }
 
     public void KeyPressed(KeyCode keyCode) {
-        if (keyCode == expectedKey) {
+        if (keyCode == ExpectedKey) {
             CurrentAmount++;
             Evaluate();
         }

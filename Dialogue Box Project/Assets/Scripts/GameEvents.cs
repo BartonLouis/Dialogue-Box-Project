@@ -12,10 +12,17 @@ public class GameEvents : MonoBehaviour
     }
 
     public event Action<KeyCode> UserPressedKey;
+    public event Action<int> UserCompletesQuest;
 
     public void KeyPressed(KeyCode keyCode) {
         if (UserPressedKey != null) {
             UserPressedKey(keyCode);
+        }
+    }
+
+    public void QuestCompleted(int questID) {
+        if (UserCompletesQuest != null) {
+            UserCompletesQuest(questID);
         }
     }
 
