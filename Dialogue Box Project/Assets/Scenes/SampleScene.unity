@@ -123,6 +123,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &192883601
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 192883603}
+  - component: {fileID: 192883602}
+  m_Layer: 0
+  m_Name: GameEventManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &192883602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192883601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07d0309b521b6ae4790ed8140da666cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &192883603
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192883601}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 739.58093, y: 267.76953, z: -3.4518173}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,15 +395,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 593948705}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 441d8820b8ec988469de207cf1f7bdf4, type: 3}
+  m_Script: {fileID: 11500000, guid: 2efe4dfc842f4cb4c934955243f8ea20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: Eric
+    name: TutorialBot
     sentences:
-    - This is my first ever sentence.
-    - It feels good to be alive.
-    - Please don't click continue, it will kill me.
+    - Welcome to the Tutorial! To get started, try using the WASD keys to move your
+      character around!
+    - Great Job! Now, for your next task, I want you to try using the SPACE bar to
+      jump.
+    - Awesome! Some obstacles will also require you to use the CTRL key to crouch
+      underneath them, give it a go now!
+    - Amazing! Now, you may have noticed your health bar in the top left, it's very
+      important not to let it reach 0. That would mean you die!
+    - Congrats! You have completed the tutorial! Now prepare yourself for the real
+      game!
 --- !u!1 &662580258
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,7 +766,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 886472797}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1236589468}
+        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+        m_MethodName: DisplayNextSentence
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &886472796
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1033,6 +1096,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1118097733}
+  - component: {fileID: 1118097734}
   m_Layer: 5
   m_Name: DialogueBox
   m_TagString: Untagged
@@ -1064,6 +1128,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000019073, y: -116.25}
   m_SizeDelta: {x: 960.2161, y: 232.5}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1118097734
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118097732}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 054aed72f2e220a44ae84be6ac869053, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1236589467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1090,10 +1174,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1236589467}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4743c7f400f43c94198dd127e4f4ca93, type: 3}
+  m_Script: {fileID: 11500000, guid: a9d27749d7bd911479147bcb3506ea76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
+  nameText: {fileID: 1030287931}
+  dialogueText: {fileID: 1080967711}
+  animator: {fileID: 1118097734}
 --- !u!4 &1236589469
 Transform:
   m_ObjectHideFlags: 0
@@ -1176,6 +1262,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1865153032
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1865153034}
+  - component: {fileID: 1865153033}
+  m_Layer: 0
+  m_Name: InputHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1865153033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865153032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 822c371bd6459d04dac7c2ae1d493c13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1865153034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865153032}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 739.58093, y: 267.76953, z: -3.4518173}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2082274714
 GameObject:
